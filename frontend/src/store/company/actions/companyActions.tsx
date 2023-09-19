@@ -12,7 +12,7 @@ export const getCompanyDataAction = () => async (dispatch: any) => {
   dispatch({ type: GET_COMPANY_DATA_REQUEST });
   try {
     const { data } = await Axios.get(
-      `http://${process.env.HOST}/emails/getCompanyData`
+      `${process.env.REACT_APP_HOST}/emails/getCompanyData`
     );
     dispatch({ type: GET_COMPANY_DATA_SUCCESS, payload: data });
   } catch (error) {
@@ -26,7 +26,7 @@ export const getCompanyDetailAction = (id: any) => async (dispatch: any) => {
   dispatch({ type: GET_COMPANY_DETAIL_DATA_REQUEST });
   try {
     const { data } = await Axios.get(
-      `http://${process.env.HOST}/emails/getCompanyDetailData/${id}`
+      `${process.env.REACT_APP_HOST}/emails/getCompanyDetailData/${id}`
     );
     dispatch({ type: GET_COMPANY_DETAIL_DATA_SUCCESS, payload: data });
   } catch (error) {

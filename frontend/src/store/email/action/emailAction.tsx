@@ -18,7 +18,7 @@ export const emailFinderAction = (values: string) => async (dispatch: any) => {
   dispatch({ type: EMAIL_FIND_REQUEST });
   try {
     const { data } = await Axios.post(
-      `http://${process.env.HOST}/emails/emailFinderMultiple`,
+      `${process.env.REACT_APP_HOST}/emails/emailFinderMultiple`,
       values
     );
     dispatch({ type: EMAIL_FIND_SUCCESS, payload: data });
@@ -35,7 +35,7 @@ export const verifySingleEmailAction =
     dispatch({ type: VERIFY_SINGLE_EMAIL_REQUEST });
     try {
       const { data } = await Axios.post(
-        `http://${process.env.HOST}/emails/verifySingle`,
+        `${process.env.REACT_APP_HOST}/emails/verifySingle`,
         { email }
       );
       dispatch({ type: VERIFY_SINGLE_EMAIL_SUCCESS, payload: data });
@@ -51,7 +51,7 @@ export const getInvalidEmailsAction = () => async (dispatch: any) => {
   dispatch({ type: GET_INVALID_EMAILS_REQUEST });
   try {
     const { data } = await Axios.get(
-      `http://${process.env.HOST}/emails/getInvalidEmails`
+      `${process.env.REACT_APP_HOST}/emails/getInvalidEmails`
     );
     dispatch({ type: GET_INVALID_EMAILS_SUCCESS, payload: data });
   } catch (error) {
@@ -68,7 +68,7 @@ export const verifyBulkEmailsAction =
     dispatch({ type: VERIFY_BULK_EMAILS_REQUEST });
     try {
       const { data } = await Axios.post(
-        `http://${process.env.HOST}/emails/bulk`,
+        `${process.env.REACT_APP_HOST}/emails/bulk`,
         bulkEmails
       );
       dispatch({ type: VERIFY_BULK_EMAILS_SUCCESS, payload: data });

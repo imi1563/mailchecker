@@ -1,4 +1,5 @@
 import Axios from "axios";
+
 import {
   DELETE_USER_FAIL,
   DELETE_USER_REQUEST,
@@ -16,7 +17,10 @@ import {
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_SUCCESS,
 } from "../constants/userConstants";
+
 import { notifyError, notifySuccess } from "../../../pages/Components/Toastify";
+import { Portal } from "@mui/material";
+
 export const userRegisterAction =
   (values: any, navigate: any) => async (dispatch: any) => {
     dispatch({ type: USER_REGISTER_REQUEST });
@@ -24,7 +28,7 @@ export const userRegisterAction =
     try {
       const { data } = await Axios.post(
         `
-      http://localhost:3002/user/registerUser`,
+      ${process.env.REACT_APP_HOST}/user/registerUser`,
         values
       );
       dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
@@ -50,7 +54,7 @@ export const userSignInAction =
     try {
       const { data } = await Axios.post(
         `
-      http://localhost:3002/user/signInUser`,
+        ${process.env.REACT_APP_HOST}/user/signInUser`,
         values
       );
       dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
@@ -85,7 +89,7 @@ export const getUsersListAction = () => async (dispatch: any) => {
   try {
     const { data } = await Axios.get(
       `
-      http://localhost:3002/user/getUserList`,
+        ${process.env.REACT_APP_HOST}/user/getUserList`,
       {
         headers: { Authorization: `Bearer ${userLoginInfo?.token}` },
       }
@@ -114,7 +118,7 @@ export const setUserRolesAction = (userRoles: any) => async (dispatch: any) => {
   try {
     const { data } = await Axios.patch(
       `
-      http://localhost:3002/user/setUserRoles`,
+       ${process.env.REACT_APP_HOST}/user/setUserRoles`,
       userRoles,
       {
         headers: { Authorization: `Bearer ${userLoginInfo.token}` },
@@ -144,7 +148,7 @@ export const deleteUserAction = (id: any) => async (dispatch: any) => {
   try {
     const { data } = await Axios.delete(
       `
-      http://localhost:3002/user/deleteUser/${id}`,
+        ${process.env.REACT_APP_HOST}/user/deleteUser/${id}`,
       {
         headers: { Authorization: `Bearer ${userLoginInfo.token}` },
       }
